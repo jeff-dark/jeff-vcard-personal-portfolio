@@ -26,11 +26,6 @@
 </head>
 
 <body>
-
-  <!--
-    - #MAIN
-  -->
-
   <main>
 
     <!--
@@ -170,7 +165,11 @@
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>About</button>
+            <button class="navbar-link active" data-nav-link>Home</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>About</button>
           </li>
 
           <li class="navbar-item">
@@ -193,15 +192,47 @@
 
       </nav>
 
+      <!--
+        - #HOME
+      -->
 
+      <!-- HOME / HERO (updated: add avatar/pattern) -->
+      <article class="hero active" data-page="home">
+        <div class="hero-inner">
+          <header>
+            <h1 class="hero-headline">Building Modern, Scalable, and Human-Centered Software Solutions</h1>
+            <p class="hero-subheadline">
+              Hi, I’m Jeff Kamau, a passionate Software Engineer who loves turning ideas into powerful digital experiences.
+              I craft web applications that are fast, secure, and elegant — from backend logic to front-end design.
+            </p>
 
+            <div class="hero-ctas">
+              <button class="form-btn" data-page-target="portfolio" title="View My Work">
+                <span>View My Work</span>
+              </button>
 
+              <button class="form-btn" data-page-target="contact" title="Let's Collaborate">
+                <span>Let’s Collaborate</span>
+              </button>
+            </div>
+          </header>
+
+          <aside class="hero-aside">
+            <div class="hero-avatar-wrap">
+              <figure class="avatar-box hero-avatar">
+                <img src="./assets/images/my-avatar.png" alt="Jeff Kamau" width="140">
+              </figure>
+              <div class="hero-pattern" aria-hidden="true"></div>
+            </div>
+          </aside>
+        </div>
+      </article>
 
       <!--
         - #ABOUT
       -->
 
-      <article class="about  active" data-page="about">
+      <article class="about" data-page="about">
 
         <header>
           <h2 class="h2 article-title">About me</h2>
@@ -209,18 +240,44 @@
 
         <section class="about-text">
           <p>
-            I'm Creative Director and UI/UX Designer from Sydney, Australia, working in web development and print media.
-            I enjoy
-            turning complex problems into simple, beautiful and intuitive designs.
+            I’m Jeff Kamau, a software engineer driven by curiosity and innovation. My journey into tech began with a fascination for
+            how software connects people and simplifies complex tasks. I specialize in full-stack web development using PHP,
+            JavaScript and MySQL and I enjoy creating seamless user experiences that feel effortless.
           </p>
 
           <p>
-            My job is to build your website so that it is functional and user-friendly but at the same time attractive.
-            Moreover, I
-            add personal touch to your product and make sure that is eye-catching and easy to use. My aim is to bring
-            across your
-            message and identity in the most creative way. I created web design for many famous brand companies.
+            Beyond coding, I explore API integrations, cloud solutions and automation tools that make systems smarter.
+            My goal is to build software that not only works beautifully but also makes a lasting impact.
           </p>
+
+          <h3 class="h3 service-title">Core Values</h3>
+          <ul class="service-list" style="grid-template-columns: 1fr;">
+            <li class="service-item">
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Continuous learning</h4>
+                <p class="service-item-text">Always improving and staying current with technologies.</p>
+              </div>
+            </li>
+            <li class="service-item">
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Clean code</h4>
+                <p class="service-item-text">Write maintainable, testable, and well-documented code.</p>
+              </div>
+            </li>
+            <li class="service-item">
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Collaboration</h4>
+                <p class="service-item-text">Work closely with teams and communities to deliver value.</p>
+              </div>
+            </li>
+            <li class="service-item">
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Simplicity</h4>
+                <p class="service-item-text">Design and engineering with clarity and purpose.</p>
+              </div>
+            </li>
+          </ul>
+
         </section>
 
 
@@ -705,6 +762,7 @@
         - #PORTFOLIO
       -->
 
+      <!-- PORTFOLIO (add project cards) -->
       <article class="portfolio" data-page="portfolio">
 
         <header>
@@ -740,28 +798,16 @@
               <div class="select-value" data-selecct-value>Select category</div>
 
               <div class="select-icon">
-                <ion-icon name="chevron-down"></ion-icon>
               </div>
 
             </button>
 
             <ul class="select-list">
 
-              <li class="select-item">
-                <button data-select-item>All</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Web design</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Applications</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Web development</button>
-              </li>
+              <li class="select-item"><button data-select-item>All</button></li>
+              <li class="select-item"><button data-select-item>Web design</button></li>
+              <li class="select-item"><button data-select-item>Applications</button></li>
+              <li class="select-item"><button data-select-item>Web development</button></li>
 
             </ul>
 
@@ -769,165 +815,51 @@
 
           <ul class="project-list">
 
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-1.jpg" alt="finance" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Finance</h3>
-
-                <p class="project-category">Web development</p>
-
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="https://github.com/jeff-dark/designall" target="_blank" rel="noopener noreferrer">
+                <div class="project-img">
+                  <img src="./assets/images/project-designall.png" alt="DesignAll Platform">
+                </div>
+                <div class="project-meta">
+                  <h4 class="project-title">DesignAll Platform</h4>
+                  <p class="project-category">Web development — PHP · MySQL</p>
+                </div>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-2.png" alt="orizon" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Orizon</h3>
-
-                <p class="project-category">Web development</p>
-
+            <li class="project-item active" data-filter-item data-category="applications">
+              <a href="https://github.com/jeff-dark/mpesa-qr-app" target="_blank" rel="noopener noreferrer">
+                <div class="project-img">
+                  <img src="./assets/images/project-mpesa.png" alt="M-PESA QR Payment App">
+                </div>
+                <div class="project-meta">
+                  <h4 class="project-title">M-PESA QR Payment App</h4>
+                  <p class="project-category">Applications — API integration</p>
+                </div>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-3.jpg" alt="fundo" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Fundo</h3>
-
-                <p class="project-category">Web design</p>
-
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="https://github.com/jeff-dark/software-repo" target="_blank" rel="noopener noreferrer">
+                <div class="project-img">
+                  <img src="./assets/images/project-repo.png" alt="Personal Software Repository">
+                </div>
+                <div class="project-meta">
+                  <h4 class="project-title">Personal Software Repository</h4>
+                  <p class="project-category">Web development — Distribution · Security</p>
+                </div>
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-4.png" alt="brawlhalla" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Brawlhalla</h3>
-
-                <p class="project-category">Applications</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-5.png" alt="dsm." loading="lazy">
-                </figure>
-
-                <h3 class="project-title">DSM.</h3>
-
-                <p class="project-category">Web design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-6.png" alt="metaspark" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">MetaSpark</h3>
-
-                <p class="project-category">Web design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-7.png" alt="summary" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Summary</h3>
-
-                <p class="project-category">Web development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-8.jpg" alt="task manager" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Task Manager</h3>
-
-                <p class="project-category">Applications</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-9.png" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Arrival</h3>
-
-                <p class="project-category">Web development</p>
-
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="https://github.com/jeff-dark/password-strength-checker" target="_blank" rel="noopener noreferrer">
+                <div class="project-img">
+                  <img src="./assets/images/project-password.png" alt="Password Strength Checker">
+                </div>
+                <div class="project-meta">
+                  <h4 class="project-title">Password Strength Checker</h4>
+                  <p class="project-category">JavaScript Utility</p>
+                </div>
               </a>
             </li>
 
@@ -1107,51 +1039,6 @@
                   <div class="blog-meta">
                     <p class="blog-category">Design</p>
 
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">Design digest #79</h3>
-
-                  <p class="blog-text">
-                    Optio cumque nihil impedit uo minus quod maxime placeat, velit esse cillum.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #CONTACT
-      -->
-
-      <article class="contact" data-page="contact">
-
-        <header>
-          <h2 class="h2 article-title">Contact</h2>
-        </header>
-
-        <section class="mapbox" data-mapbox>
-          <figure>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199666.5651251294!2d-121.58334177520186!3d38.56165006739519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ac672b28397f9%3A0x921f6aaa74197fdb!2sSacramento%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1647608789441!5m2!1sen!2sbd"
-              width="400" height="300" loading="lazy"></iframe>
-          </figure>
-        </section>
-
-        <section class="contact-form">
 
           <h3 class="h3 form-title">Contact Form</h3>
 
@@ -1172,8 +1059,13 @@
 
           </form>
 
+          <div style="margin-top:16px; color:var(--light-gray);">
+            <p>Or reach out directly:</p>
+            <p>Email: <a href="mailto:jeffkamau.dev@example.com" class="contact-link">jeffkamau.dev@example.com</a></p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/jeffkamau" target="_blank" class="contact-link">linkedin.com/in/jeffkamau</a></p>
+            <p>GitHub: <a href="https://github.com/jeff-dark" target="_blank" class="contact-link">github.com/jeff-dark</a></p>
+          </div>
         </section>
-
       </article>
 
     </div>

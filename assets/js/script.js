@@ -1,10 +1,7 @@
 'use strict';
 
-
-
 // element toggle function
 const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
-
 
 
 // sidebar variables
@@ -140,20 +137,39 @@ for (let i = 0; i < formInputs.length; i++) {
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
 
+// small helper to navigate to a named page (pageName should match data-page)
+function navigateToPage(pageName) {
+  for (let i = 0; i < pages.length; i++) {
+    if (pages[i].dataset.page === pageName) {
+      pages[i].classList.add("active");
+      // find corresponding nav link and activate it
+      for (let j = 0; j < navigationLinks.length; j++) {
+        if (navigationLinks[j].innerHTML.toLowerCase() === pageName) {
+          navigationLinks[j].classList.add("active");
+        } else {
+          navigationLinks[j].classList.remove("active");
+        }
+      }
+      window.scrollTo(0, 0);
+    } else {
+      pages[i].classList.remove("active");
+    }
+  }
+}
+
 // add event to all nav link
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
-
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
-      }
-    }
-
+    const target = this.innerHTML.toLowerCase();
+    navigateToPage(target);
   });
 }
+
+// allow CTA buttons to target pages via data-page-target
+const pageTargets = document.querySelectorAll("[data-page-target]");
+pageTargets.forEach(btn => {
+  btn.addEventListener("click", function () {
+    const targetPage = (this.getAttribute("data-page-target") || "").toLowerCase();
+    if (targetPage) navigateToPage(targetPage);
+  });
+});
