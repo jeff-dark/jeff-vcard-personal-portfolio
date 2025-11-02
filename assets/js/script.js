@@ -157,3 +157,35 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+// allow CTA buttons on Home to navigate without being navbar links
+const pageTargets = document.querySelectorAll("[data-page-target]");
+if (pageTargets.length) {
+  pageTargets.forEach(btn => {
+    btn.addEventListener("click", function () {
+      const target = (this.getAttribute("data-page-target") || "").toLowerCase();
+      if (!target) return;
+
+      // toggle page visibility
+      for (let i = 0; i < pages.length; i++) {
+        if (pages[i].dataset.page === target) {
+          pages[i].classList.add("active");
+        } else {
+          pages[i].classList.remove("active");
+        }
+      }
+
+      // set corresponding navbar link active
+      for (let i = 0; i < navigationLinks.length; i++) {
+        const label = navigationLinks[i].textContent.trim().toLowerCase();
+        if (label === target) {
+          navigationLinks[i].classList.add("active");
+        } else {
+          navigationLinks[i].classList.remove("active");
+        }
+      }
+
+      window.scrollTo(0, 0);
+    });
+  });
+}

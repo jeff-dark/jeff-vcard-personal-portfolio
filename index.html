@@ -166,11 +166,14 @@
       -->
 
       <nav class="navbar">
-
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>About</button>
+            <button class="navbar-link active" data-nav-link>Home</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>About</button>
           </li>
 
           <li class="navbar-item">
@@ -190,7 +193,6 @@
           </li>
 
         </ul>
-
       </nav>
 
 
@@ -198,11 +200,42 @@
 
 
       <!--
-        - #ABOUT
+        - #HOME (follows existing card/typography styles)
       -->
 
-      <article class="about  active" data-page="about">
+      <article class="home active" data-page="home">
 
+        <header>
+          <h2 class="h2 article-title">Home</h2>
+        </header>
+
+        <section class="content-card" style="padding:16px;">
+          <h3 class="h3" style="margin-bottom:10px;">
+            Building Modern, Scalable, and Human-Centered Software Solutions
+          </h3>
+
+          <p style="margin-bottom:15px; color:var(--light-gray);">
+            Hi, I’m Jeff Kamau, a passionate Software Engineer who loves turning ideas into powerful digital experiences.
+            I craft web applications that are fast, secure, and elegant — from backend logic to front-end design.
+          </p>
+
+          <div>
+            <button class="form-btn" data-page-target="portfolio" title="View My Work" style="margin-bottom:10px;">
+              <ion-icon name="briefcase-outline"></ion-icon>
+              <span>View My Work</span>
+            </button>
+
+            <button class="form-btn" data-page-target="contact" title="Let's Collaborate">
+              <ion-icon name="chatbubbles-outline"></ion-icon>
+              <span>Let’s Collaborate</span>
+            </button>
+          </div>
+        </section>
+
+      </article>
+
+      <!-- ABOUT -->
+      <article class="about" data-page="about">
         <header>
           <h2 class="h2 article-title">About me</h2>
         </header>
