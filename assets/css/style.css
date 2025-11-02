@@ -1880,3 +1880,10 @@ textarea.form-input::-webkit-resizer { display: none; }
   .timeline-text { max-width: 700px; }
 
 }
+
+/* Make service cards span full width on large screens for long content */
+@media (min-width: 1024px) {
+  .about .service-list { grid-template-columns: 1fr; }
+  .about .service-item { padding: 32px; }
+  .about .service-item .service-item-text { line-height: 1.7; }
+}
