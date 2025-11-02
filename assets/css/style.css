@@ -860,6 +860,18 @@ main {
   line-height: 1.6;
 }
 
+/* Bulleted points inside resume timeline items */
+.timeline-points {
+  margin: 8px 0 0 18px;
+  padding-left: 4px;
+}
+.timeline-points li {
+  list-style: disc;
+  margin: 6px 0;
+  color: var(--light-gray);
+  line-height: 1.6;
+}
+
 
 /**
  * skills 
