@@ -292,6 +292,37 @@ article.active {
   z-index: -1;
 }
 
+/* Skills icon grid */
+.skills-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  gap: 16px;
+  padding: 20px; /* content-card already pads; extra spacing feels balanced */
+}
+
+.skills-icon-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  border: 1px solid var(--jet);
+  border-radius: 12px;
+  background: var(--eerie-black-2);
+}
+
+.skills-icon-item i,
+.skills-icon-item ion-icon {
+  font-size: 34px;
+  color: var(--white-2);
+}
+
+@media (min-width: 580px) {
+  .skills-icons { gap: 20px; }
+  .skills-icon-item { height: 72px; }
+  .skills-icon-item i,
+  .skills-icon-item ion-icon { font-size: 38px; }
+}
+
 
 
 
