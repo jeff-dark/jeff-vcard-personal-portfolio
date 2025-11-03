@@ -208,6 +208,14 @@
 
       <article class="home active" data-page="home">
 
+        <!-- Theme Toggle -->
+        <div class="theme-toggle-wrapper">
+          <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
+            <ion-icon name="sunny-outline" class="sun-icon"></ion-icon>
+            <ion-icon name="moon-outline" class="moon-icon"></ion-icon>
+          </button>
+        </div>
+
         <!-- Hero Section -->
         <section class="hero-section">
           <div class="hero-content">
@@ -223,9 +231,21 @@
               <span class="cursor">|</span>
             </div>
             
+            <div class="hero-status">
+              <div class="status-indicator">
+                <span class="status-dot"></span>
+                <span class="status-text">Available for projects</span>
+              </div>
+              <div class="location-info">
+                <ion-icon name="location-outline"></ion-icon>
+                <span>Nakuru, Kenya</span>
+                <span class="timezone" id="current-time"></span>
+              </div>
+            </div>
+            
             <p class="hero-description">
               Passionate about crafting digital experiences that make a difference. I transform ideas into robust, 
-              scalable solutions using modern technologies and best practices.
+              scalable solutions using modern technologies and best practices. Usually responds within 2 hours.
             </p>
             
             <div class="hero-actions">
@@ -238,10 +258,44 @@
                 <ion-icon name="mail-outline"></ion-icon>
                 <span>Get In Touch</span>
               </button>
+              
+              <a href="#" class="btn-outline" id="download-resume">
+                <ion-icon name="download-outline"></ion-icon>
+                <span>Download Resume</span>
+              </a>
+            </div>
+
+            <!-- Social Links -->
+            <div class="hero-social">
+              <a href="https://github.com/jeff-dark" target="_blank" class="social-btn" title="GitHub - jeff-dark">
+                <ion-icon name="logo-github"></ion-icon>
+              </a>
+              <a href="https://github.com/JEFFHONTEZ" target="_blank" class="social-btn" title="GitHub - JEFFHONTEZ">
+                <ion-icon name="logo-github"></ion-icon>
+              </a>
+              <a href="https://linkedin.com/in/jeff-kamau" target="_blank" class="social-btn" title="LinkedIn">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+              <a href="https://twitter.com/jeff_kamau" target="_blank" class="social-btn" title="Twitter">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+              <a href="mailto:jeffkamau8501@gmail.com" class="social-btn" title="Email">
+                <ion-icon name="mail-outline"></ion-icon>
+              </a>
             </div>
           </div>
           
           <div class="hero-visual">
+            <!-- Profile Photo -->
+            <div class="profile-photo">
+              <div class="photo-container">
+                <img src="./assets/images/my-avatar.png" alt="Jeff Kamau" class="profile-img">
+                <div class="photo-ring"></div>
+                <div class="photo-pulse"></div>
+              </div>
+            </div>
+
+            <!-- Code Snippet -->
             <div class="code-snippet">
               <div class="code-header">
                 <div class="code-dots">
@@ -262,17 +316,34 @@
                 </div>
                 <div class="code-line">
                   <span class="line-number">3</span>
-                  <span class="code-text">  <span class="property">skills</span>: [<span class="string">'PHP'</span>, <span class="string">'JavaScript'</span>, <span class="string">'Python'</span>],</span>
+                  <span class="code-text">  <span class="property">location</span>: <span class="string">'Nakuru, Kenya'</span>,</span>
                 </div>
                 <div class="code-line">
                   <span class="line-number">4</span>
-                  <span class="code-text">  <span class="property">passion</span>: <span class="string">'Building Amazing Software'</span></span>
+                  <span class="code-text">  <span class="property">skills</span>: [<span class="string">'PHP'</span>, <span class="string">'JavaScript'</span>, <span class="string">'Python'</span>],</span>
                 </div>
                 <div class="code-line">
                   <span class="line-number">5</span>
+                  <span class="code-text">  <span class="property">passion</span>: <span class="string">'Building Amazing Software'</span>,</span>
+                </div>
+                <div class="code-line">
+                  <span class="line-number">6</span>
+                  <span class="code-text">  <span class="property">available</span>: <span class="boolean">true</span></span>
+                </div>
+                <div class="code-line">
+                  <span class="line-number">7</span>
                   <span class="code-text">};</span>
                 </div>
               </div>
+            </div>
+
+            <!-- Floating Particles -->
+            <div class="floating-particles">
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
             </div>
           </div>
         </section>
@@ -282,41 +353,52 @@
           <div class="stats-grid">
             <div class="stat-card">
               <div class="stat-icon">
-                <ion-icon name="code-slash-outline"></ion-icon>
+                <ion-icon name="git-branch-outline"></ion-icon>
               </div>
               <div class="stat-content">
-                <h3 class="stat-number" data-count="50">0</h3>
-                <p class="stat-label">Projects Completed</p>
+                <h3 class="stat-number" data-stat="repos" data-count="0">0</h3>
+                <p class="stat-label">Public Repositories</p>
               </div>
             </div>
             
             <div class="stat-card">
               <div class="stat-icon">
-                <ion-icon name="trophy-outline"></ion-icon>
+                <ion-icon name="people-outline"></ion-icon>
               </div>
               <div class="stat-content">
-                <h3 class="stat-number" data-count="3">0</h3>
-                <p class="stat-label">Certifications</p>
+                <h3 class="stat-number" data-stat="followers" data-count="0">0</h3>
+                <p class="stat-label">GitHub Followers</p>
               </div>
             </div>
             
             <div class="stat-card">
               <div class="stat-icon">
-                <ion-icon name="time-outline"></ion-icon>
+                <ion-icon name="calendar-outline"></ion-icon>
               </div>
               <div class="stat-content">
-                <h3 class="stat-number" data-count="2">0</h3>
-                <p class="stat-label">Years Experience</p>
+                <h3 class="stat-number" data-stat="contributions" data-count="0">0</h3>
+                <p class="stat-label">Contributions This Year</p>
               </div>
             </div>
             
             <div class="stat-card">
               <div class="stat-icon">
-                <ion-icon name="bulb-outline"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
               </div>
               <div class="stat-content">
-                <h3 class="stat-number" data-count="15">0</h3>
-                <p class="stat-label">Technologies</p>
+                <h3 class="stat-number" data-stat="stars" data-count="0">0</h3>
+                <p class="stat-label">Total Stars Earned</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- GitHub Activity -->
+          <div class="github-activity">
+            <h3 class="activity-title">Recent Activity</h3>
+            <div class="activity-feed" id="github-activity">
+              <div class="activity-loading">
+                <div class="activity-spinner"></div>
+                <span>Loading GitHub activity...</span>
               </div>
             </div>
           </div>
@@ -326,28 +408,182 @@
         <section class="services-overview">
           <h2 class="section-title">What I Do</h2>
           <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card" data-tilt>
               <div class="service-icon">
                 <ion-icon name="desktop-outline"></ion-icon>
               </div>
               <h3 class="service-title">Full-Stack Development</h3>
               <p class="service-description">Building complete web applications from database to user interface using modern frameworks and technologies.</p>
+              <div class="service-tech">
+                <span class="tech-badge" title="PHP">
+                  <i class="devicon-php-plain"></i>
+                </span>
+                <span class="tech-badge" title="Laravel">
+                  <i class="devicon-laravel-plain"></i>
+                </span>
+                <span class="tech-badge" title="JavaScript">
+                  <i class="devicon-javascript-plain"></i>
+                </span>
+                <span class="tech-badge" title="React">
+                  <i class="devicon-react-original"></i>
+                </span>
+                <span class="tech-badge" title="MySQL">
+                  <i class="devicon-mysql-plain"></i>
+                </span>
+              </div>
+              <div class="service-metrics">
+                <span class="metric">⚡ 99% Uptime</span>
+                <span class="metric">🚀 Fast Delivery</span>
+              </div>
             </div>
             
-            <div class="service-card">
+            <div class="service-card" data-tilt>
               <div class="service-icon">
                 <ion-icon name="server-outline"></ion-icon>
               </div>
               <h3 class="service-title">API Development</h3>
               <p class="service-description">Creating robust RESTful APIs and backend services that power modern applications and integrations.</p>
+              <div class="service-tech">
+                <span class="tech-badge" title="Node.js">
+                  <i class="devicon-nodejs-plain"></i>
+                </span>
+                <span class="tech-badge" title="Python">
+                  <i class="devicon-python-plain"></i>
+                </span>
+                <span class="tech-badge" title="REST API">
+                  <ion-icon name="cloud-outline"></ion-icon>
+                </span>
+                <span class="tech-badge" title="Postman">
+                  <i class="devicon-postman-plain"></i>
+                </span>
+                <span class="tech-badge" title="Git">
+                  <i class="devicon-git-plain"></i>
+                </span>
+              </div>
+              <div class="service-metrics">
+                <span class="metric">📊 Scalable</span>
+                <span class="metric">🔒 Secure</span>
+              </div>
             </div>
             
-            <div class="service-card">
+            <div class="service-card" data-tilt>
               <div class="service-icon">
                 <ion-icon name="phone-portrait-outline"></ion-icon>
               </div>
               <h3 class="service-title">Responsive Design</h3>
               <p class="service-description">Crafting beautiful, mobile-first interfaces that work seamlessly across all devices and screen sizes.</p>
+              <div class="service-tech">
+                <span class="tech-badge" title="HTML5">
+                  <i class="devicon-html5-plain"></i>
+                </span>
+                <span class="tech-badge" title="CSS3">
+                  <i class="devicon-css3-plain"></i>
+                </span>
+                <span class="tech-badge" title="Bootstrap">
+                  <i class="devicon-bootstrap-plain"></i>
+                </span>
+                <span class="tech-badge" title="Vue.js">
+                  <i class="devicon-vuejs-plain"></i>
+                </span>
+                <span class="tech-badge" title="jQuery">
+                  <i class="devicon-jquery-plain"></i>
+                </span>
+              </div>
+              <div class="service-metrics">
+                <span class="metric">📱 Mobile-First</span>
+                <span class="metric">🎨 Modern UI</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Process Workflow -->
+          <div class="process-section">
+            <h3 class="process-title">My Development Process</h3>
+            <div class="process-steps">
+              <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h4>Discovery & Planning</h4>
+                  <p>Understanding your needs and creating a roadmap</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h4>Design & Prototype</h4>
+                  <p>Creating wireframes and interactive prototypes</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h4>Development</h4>
+                  <p>Building with clean, maintainable code</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <h4>Testing & Launch</h4>
+                  <p>Thorough testing and smooth deployment</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick Contact & Newsletter -->
+        <section class="quick-actions">
+          <div class="quick-contact">
+            <h3 class="quick-title">Let's Work Together</h3>
+            <p class="quick-description">Have a project in mind? Let's discuss how I can help bring your ideas to life.</p>
+            
+            <form class="mini-contact-form" id="mini-contact-form">
+              <div class="form-group">
+                <input type="text" placeholder="Your Name" required class="mini-input">
+                <input type="email" placeholder="Your Email" required class="mini-input">
+              </div>
+              <textarea placeholder="Tell me about your project..." required class="mini-textarea"></textarea>
+              <button type="submit" class="mini-submit-btn">
+                <ion-icon name="send-outline"></ion-icon>
+                <span>Send Message</span>
+              </button>
+            </form>
+          </div>
+
+          <div class="newsletter-signup">
+            <h3 class="newsletter-title">Stay Updated</h3>
+            <p class="newsletter-description">Get notified about my latest projects and tech insights.</p>
+            
+            <form class="newsletter-form" id="newsletter-form">
+              <div class="newsletter-input-group">
+                <input type="email" placeholder="Enter your email" required class="newsletter-input">
+                <button type="submit" class="newsletter-btn">
+                  <ion-icon name="arrow-forward-outline"></ion-icon>
+                </button>
+              </div>
+            </form>
+
+            <!-- Current Status Widget -->
+            <div class="status-widget">
+              <div class="widget-header">
+                <ion-icon name="pulse-outline"></ion-icon>
+                <span>Current Status</span>
+              </div>
+              <div class="widget-content">
+                <div class="status-item">
+                  <span class="status-label">Local Time:</span>
+                  <span class="status-value" id="local-time">Loading...</span>
+                </div>
+                <div class="status-item">
+                  <span class="status-label">Weather:</span>
+                  <span class="status-value" id="weather-info">Loading...</span>
+                </div>
+                <div class="status-item">
+                  <span class="status-label">Next Available:</span>
+                  <span class="status-value">Immediately</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>      </article>

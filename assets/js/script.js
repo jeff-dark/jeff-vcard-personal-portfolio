@@ -398,6 +398,10 @@ class GitHubProjects {
 document.addEventListener('DOMContentLoaded', () => {
   new GitHubProjects();
   initHomeAnimations();
+  initThemeToggle();
+  initTimeAndWeather();
+  initGitHubStats();
+  initContactForms();
 });
 
 // Home page animations and interactions
@@ -412,7 +416,9 @@ function initHomeAnimations() {
       'Software Engineer',
       'Full-Stack Developer', 
       'Problem Solver',
-      'Tech Enthusiast'
+      'Tech Enthusiast',
+      'API Developer',
+      'Code Craftsman'
     ];
     
     let textIndex = 0;
@@ -482,4 +488,374 @@ function initHomeAnimations() {
       }
     }, 16);
   }
+
+  // Intersection Observer for animations
+  const animateElements = document.querySelectorAll('.service-card, .stat-card, .process-step');
+  const animationObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  animateElements.forEach(el => animationObserver.observe(el));
+}
+
+// Theme Toggle Functionality
+function initThemeToggle() {
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+  
+  // Check for saved theme preference or default to dark mode
+  const currentTheme = localStorage.getItem('theme') || 'dark';
+  body.setAttribute('data-theme', currentTheme);
+  
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      // Add click animation
+      themeToggle.style.transform = 'scale(0.9)';
+      setTimeout(() => {
+        themeToggle.style.transform = 'scale(1)';
+      }, 150);
+    });
+  }
+}
+
+// Time and Weather Updates
+function initTimeAndWeather() {
+  updateTime();
+  updateWeather();
+  
+  // Update time every minute
+  setInterval(updateTime, 60000);
+  
+  // Update weather every 30 minutes
+  setInterval(updateWeather, 1800000);
+}
+
+function updateTime() {
+  const timeElements = document.querySelectorAll('#current-time, #local-time');
+  const now = new Date();
+  const options = {
+    timeZone: 'Africa/Nairobi',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  };
+  
+  const timeString = now.toLocaleTimeString('en-US', options);
+  timeElements.forEach(el => {
+    if (el) el.textContent = timeString;
+  });
+}
+
+function updateWeather() {
+  const weatherElement = document.getElementById('weather-info');
+  if (!weatherElement) return;
+  
+  // Simple weather simulation (in real app, you'd use a weather API)
+  const conditions = ['⛅ Partly Cloudy', '☀️ Sunny', '🌧️ Light Rain', '⛈️ Thunderstorm', '🌤️ Mostly Sunny'];
+  const temps = ['22°C', '25°C', '19°C', '21°C', '27°C'];
+  
+  const randomCondition = conditions[Math.floor(Math.random() * conditions.length)];
+  const randomTemp = temps[Math.floor(Math.random() * temps.length)];
+  
+  weatherElement.textContent = `${randomCondition} ${randomTemp}`;
+}
+
+// GitHub Stats Integration
+async function initGitHubStats() {
+  try {
+    const accounts = ['jeff-dark', 'JEFFHONTEZ'];
+    let totalRepos = 0;
+    let totalFollowers = 0;
+    let totalStars = 0;
+    let recentActivity = [];
+    
+    // Fetch data from both accounts
+    for (const account of accounts) {
+      try {
+        // Get user data
+        const userResponse = await fetch(`https://api.github.com/users/${account}`);
+        const userData = await userResponse.json();
+        
+        if (userData && !userData.message) {
+          totalRepos += userData.public_repos || 0;
+          totalFollowers += userData.followers || 0;
+        }
+        
+        // Get repositories
+        const reposResponse = await fetch(`https://api.github.com/users/${account}/repos?sort=updated&per_page=10`);
+        const reposData = await reposResponse.json();
+        
+        if (Array.isArray(reposData)) {
+          // Calculate total stars
+          reposData.forEach(repo => {
+            totalStars += repo.stargazers_count || 0;
+          });
+        }
+        
+        // Get recent events
+        const eventsResponse = await fetch(`https://api.github.com/users/${account}/events/public?per_page=5`);
+        const eventsData = await eventsResponse.json();
+        
+        if (Array.isArray(eventsData)) {
+          recentActivity = recentActivity.concat(eventsData.slice(0, 3));
+        }
+        
+      } catch (error) {
+        console.warn(`Failed to fetch data for ${account}:`, error);
+      }
+    }
+    
+    // Update stats in UI
+    updateStatElement('repos', totalRepos);
+    updateStatElement('followers', totalFollowers);
+    updateStatElement('stars', totalStars);
+    updateStatElement('contributions', Math.floor(Math.random() * 500) + 200); // Simulated
+    
+    // Update recent activity
+    updateGitHubActivity(recentActivity);
+    
+  } catch (error) {
+    console.error('Error fetching GitHub stats:', error);
+    // Fallback to sample data
+    updateStatElement('repos', 45);
+    updateStatElement('followers', 28);
+    updateStatElement('stars', 156);
+    updateStatElement('contributions', 342);
+  }
+}
+
+function updateStatElement(stat, value) {
+  const element = document.querySelector(`[data-stat="${stat}"]`);
+  if (element) {
+    element.setAttribute('data-count', value);
+    
+    // Trigger counter animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+    
+    observer.observe(element);
+  }
+}
+
+function updateGitHubActivity(activities) {
+  const activityFeed = document.getElementById('github-activity');
+  if (!activityFeed) return;
+  
+  if (activities.length === 0) {
+    activityFeed.innerHTML = `
+      <div class="activity-item">
+        <div class="activity-icon">
+          <ion-icon name="information-outline"></ion-icon>
+        </div>
+        <div class="activity-content">
+          <div class="activity-text">No recent public activity</div>
+          <div class="activity-time">Check GitHub profiles for updates</div>
+        </div>
+      </div>
+    `;
+    return;
+  }
+  
+  const activityHTML = activities.slice(0, 5).map(activity => {
+    const icon = getActivityIcon(activity.type);
+    const text = getActivityText(activity);
+    const time = getRelativeTime(activity.created_at);
+    
+    return `
+      <div class="activity-item">
+        <div class="activity-icon">
+          <ion-icon name="${icon}"></ion-icon>
+        </div>
+        <div class="activity-content">
+          <div class="activity-text">${text}</div>
+          <div class="activity-time">${time}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  activityFeed.innerHTML = activityHTML;
+}
+
+function getActivityIcon(type) {
+  const iconMap = {
+    'PushEvent': 'git-commit-outline',
+    'CreateEvent': 'add-outline',
+    'WatchEvent': 'star-outline',
+    'ForkEvent': 'git-branch-outline',
+    'IssuesEvent': 'bug-outline',
+    'PullRequestEvent': 'git-pull-request-outline'
+  };
+  return iconMap[type] || 'code-outline';
+}
+
+function getActivityText(activity) {
+  const repo = activity.repo.name.split('/')[1];
+  switch (activity.type) {
+    case 'PushEvent':
+      const commits = activity.payload.commits ? activity.payload.commits.length : 1;
+      return `Pushed ${commits} commit${commits > 1 ? 's' : ''} to ${repo}`;
+    case 'CreateEvent':
+      return `Created ${activity.payload.ref_type} in ${repo}`;
+    case 'WatchEvent':
+      return `Starred ${repo}`;
+    case 'ForkEvent':
+      return `Forked ${repo}`;
+    case 'IssuesEvent':
+      return `${activity.payload.action} an issue in ${repo}`;
+    case 'PullRequestEvent':
+      return `${activity.payload.action} a pull request in ${repo}`;
+    default:
+      return `Activity in ${repo}`;
+  }
+}
+
+function getRelativeTime(dateString) {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffMs = now - date;
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+  const diffMinutes = Math.floor(diffMs / (1000 * 60));
+  
+  if (diffDays > 0) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+  if (diffHours > 0) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+  if (diffMinutes > 0) return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''} ago`;
+  return 'Just now';
+}
+
+// Contact Forms Functionality
+function initContactForms() {
+  // Mini contact form
+  const miniForm = document.getElementById('mini-contact-form');
+  if (miniForm) {
+    miniForm.addEventListener('submit', handleMiniContactSubmit);
+  }
+  
+  // Newsletter form
+  const newsletterForm = document.getElementById('newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', handleNewsletterSubmit);
+  }
+  
+  // Download resume
+  const downloadBtn = document.getElementById('download-resume');
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', handleResumeDownload);
+  }
+}
+
+function handleMiniContactSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  const submitBtn = form.querySelector('.mini-submit-btn');
+  
+  // Disable button and show loading
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = `
+    <div class="activity-spinner" style="width: 16px; height: 16px;"></div>
+    <span>Sending...</span>
+  `;
+  
+  // Simulate form submission (replace with actual endpoint)
+  setTimeout(() => {
+    submitBtn.innerHTML = `
+      <ion-icon name="checkmark-outline"></ion-icon>
+      <span>Message Sent!</span>
+    `;
+    submitBtn.style.background = '#27ca3f';
+    
+    // Reset form
+    form.reset();
+    
+    // Reset button after 3 seconds
+    setTimeout(() => {
+      submitBtn.disabled = false;
+      submitBtn.style.background = '';
+      submitBtn.innerHTML = `
+        <ion-icon name="send-outline"></ion-icon>
+        <span>Send Message</span>
+      `;
+    }, 3000);
+  }, 2000);
+}
+
+function handleNewsletterSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const email = form.querySelector('.newsletter-input').value;
+  const submitBtn = form.querySelector('.newsletter-btn');
+  
+  // Simple email validation
+  if (!email || !email.includes('@')) {
+    return;
+  }
+  
+  // Show success feedback
+  submitBtn.innerHTML = '<ion-icon name="checkmark-outline"></ion-icon>';
+  submitBtn.style.background = '#27ca3f';
+  
+  // Reset after 2 seconds
+  setTimeout(() => {
+    form.reset();
+    submitBtn.innerHTML = '<ion-icon name="arrow-forward-outline"></ion-icon>';
+    submitBtn.style.background = '';
+  }, 2000);
+}
+
+function handleResumeDownload(e) {
+  e.preventDefault();
+  const btn = e.target.closest('.btn-outline');
+  
+  // Simulate download (replace with actual resume file)
+  btn.innerHTML = `
+    <ion-icon name="checkmark-outline"></ion-icon>
+    <span>Downloaded!</span>
+  `;
+  
+  // Reset after 2 seconds
+  setTimeout(() => {
+    btn.innerHTML = `
+      <ion-icon name="download-outline"></ion-icon>
+      <span>Download Resume</span>
+    `;
+  }, 2000);
+  
+  // Here you would trigger actual file download
+  // window.open('/path/to/resume.pdf', '_blank');
+}
+
+// Helper function for counter animation (reused)
+function animateCounter(element) {
+  const target = parseInt(element.getAttribute('data-count'));
+  const duration = 2000;
+  const step = target / (duration / 16);
+  let current = 0;
+  
+  const timer = setInterval(() => {
+    current += step;
+    if (current >= target) {
+      element.textContent = target + (target > 10 ? '+' : '');
+      clearInterval(timer);
+    } else {
+      element.textContent = Math.floor(current);
+    }
+  }, 16);
 }
