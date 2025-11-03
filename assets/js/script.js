@@ -762,9 +762,9 @@ function initContactForms() {
 }
 
 function handleMiniContactSubmit(e) {
-  e.preventDefault();
+  // Let the form submit normally to Formspree
+  // Just provide visual feedback on button click
   const form = e.target;
-  const formData = new FormData(form);
   const submitBtn = form.querySelector('.mini-submit-btn');
   
   // Disable button and show loading
@@ -774,16 +774,14 @@ function handleMiniContactSubmit(e) {
     <span>Sending...</span>
   `;
   
-  // Simulate form submission (replace with actual endpoint)
+  // The form will submit to Formspree naturally
+  // Reset button after a short delay to show feedback
   setTimeout(() => {
     submitBtn.innerHTML = `
       <ion-icon name="checkmark-outline"></ion-icon>
       <span>Message Sent!</span>
     `;
     submitBtn.style.background = '#27ca3f';
-    
-    // Reset form
-    form.reset();
     
     // Reset button after 3 seconds
     setTimeout(() => {
@@ -794,7 +792,7 @@ function handleMiniContactSubmit(e) {
         <span>Send Message</span>
       `;
     }, 3000);
-  }, 2000);
+  }, 1000);
 }
 
 function handleNewsletterSubmit(e) {
