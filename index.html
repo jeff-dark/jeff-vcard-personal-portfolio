@@ -202,36 +202,155 @@
         - #HOME (follows existing card/typography styles)
       -->
 
+      <!--
+        - #HOME
+      -->
+
       <article class="home active" data-page="home">
 
-        <header>
-          <h2 class="h2 article-title">Home</h2>
-        </header>
-
-        <section class="content-card" style="padding:16px;">
-          <h3 class="h3" style="margin-bottom:10px;">
-            Building Modern, Scalable, and Human-Centered Software Solutions
-          </h3>
-
-          <p style="margin-bottom:15px; color:var(--light-gray);">
-            Hi, I’m Jeff Kamau, a passionate Software Engineer who loves turning ideas into powerful digital experiences.
-            I craft web applications that are fast, secure, and elegant — from backend logic to front-end design.
-          </p>
-
-          <div>
-            <button class="form-btn" data-page-target="projects" title="View My Work" style="margin-bottom:10px;">
-              <ion-icon name="briefcase-outline"></ion-icon>
-              <span>View My Work</span>
-            </button>
-
-            <button class="form-btn" data-page-target="contact" title="Let's Collaborate">
-              <ion-icon name="chatbubbles-outline"></ion-icon>
-              <span>Let’s Collaborate</span>
-            </button>
+        <!-- Hero Section -->
+        <section class="hero-section">
+          <div class="hero-content">
+            <div class="hero-greeting">
+              <span class="greeting-text">👋 Hello, I'm</span>
+            </div>
+            
+            <h1 class="hero-name">Jeff Kamau</h1>
+            
+            <div class="hero-title">
+              <span class="title-prefix">I'm a </span>
+              <span class="typing-text" id="typing-text">Software Engineer</span>
+              <span class="cursor">|</span>
+            </div>
+            
+            <p class="hero-description">
+              Passionate about crafting digital experiences that make a difference. I transform ideas into robust, 
+              scalable solutions using modern technologies and best practices.
+            </p>
+            
+            <div class="hero-actions">
+              <button class="btn-primary" data-page-target="projects">
+                <ion-icon name="briefcase-outline"></ion-icon>
+                <span>View My Work</span>
+              </button>
+              
+              <button class="btn-secondary" data-page-target="contact">
+                <ion-icon name="mail-outline"></ion-icon>
+                <span>Get In Touch</span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="hero-visual">
+            <div class="code-snippet">
+              <div class="code-header">
+                <div class="code-dots">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <span class="code-title">jeff-kamau.js</span>
+              </div>
+              <div class="code-content">
+                <div class="code-line">
+                  <span class="line-number">1</span>
+                  <span class="code-text"><span class="keyword">const</span> <span class="variable">developer</span> = {</span>
+                </div>
+                <div class="code-line">
+                  <span class="line-number">2</span>
+                  <span class="code-text">  <span class="property">name</span>: <span class="string">'Jeff Kamau'</span>,</span>
+                </div>
+                <div class="code-line">
+                  <span class="line-number">3</span>
+                  <span class="code-text">  <span class="property">skills</span>: [<span class="string">'PHP'</span>, <span class="string">'JavaScript'</span>, <span class="string">'Python'</span>],</span>
+                </div>
+                <div class="code-line">
+                  <span class="line-number">4</span>
+                  <span class="code-text">  <span class="property">passion</span>: <span class="string">'Building Amazing Software'</span></span>
+                </div>
+                <div class="code-line">
+                  <span class="line-number">5</span>
+                  <span class="code-text">};</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-      </article>
+        <!-- Quick Stats -->
+        <section class="stats-section">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <ion-icon name="code-slash-outline"></ion-icon>
+              </div>
+              <div class="stat-content">
+                <h3 class="stat-number" data-count="50">0</h3>
+                <p class="stat-label">Projects Completed</p>
+              </div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="stat-icon">
+                <ion-icon name="trophy-outline"></ion-icon>
+              </div>
+              <div class="stat-content">
+                <h3 class="stat-number" data-count="3">0</h3>
+                <p class="stat-label">Certifications</p>
+              </div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="stat-icon">
+                <ion-icon name="time-outline"></ion-icon>
+              </div>
+              <div class="stat-content">
+                <h3 class="stat-number" data-count="2">0</h3>
+                <p class="stat-label">Years Experience</p>
+              </div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="stat-icon">
+                <ion-icon name="bulb-outline"></ion-icon>
+              </div>
+              <div class="stat-content">
+                <h3 class="stat-number" data-count="15">0</h3>
+                <p class="stat-label">Technologies</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- What I Do -->
+        <section class="services-overview">
+          <h2 class="section-title">What I Do</h2>
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-icon">
+                <ion-icon name="desktop-outline"></ion-icon>
+              </div>
+              <h3 class="service-title">Full-Stack Development</h3>
+              <p class="service-description">Building complete web applications from database to user interface using modern frameworks and technologies.</p>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-icon">
+                <ion-icon name="server-outline"></ion-icon>
+              </div>
+              <h3 class="service-title">API Development</h3>
+              <p class="service-description">Creating robust RESTful APIs and backend services that power modern applications and integrations.</p>
+            </div>
+            
+            <div class="service-card">
+              <div class="service-icon">
+                <ion-icon name="phone-portrait-outline"></ion-icon>
+              </div>
+              <h3 class="service-title">Responsive Design</h3>
+              <p class="service-description">Crafting beautiful, mobile-first interfaces that work seamlessly across all devices and screen sizes.</p>
+            </div>
+          </div>
+        </section>      </article>
 
       <!-- ABOUT -->
       <article class="about" data-page="about">

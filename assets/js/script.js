@@ -397,4 +397,89 @@ class GitHubProjects {
 // Initialize GitHub Projects when page loads
 document.addEventListener('DOMContentLoaded', () => {
   new GitHubProjects();
+  initHomeAnimations();
 });
+
+// Home page animations and interactions
+function initHomeAnimations() {
+  // Only run if home page exists
+  if (!document.querySelector('.home[data-page="home"]')) return;
+  
+  // Typing animation
+  const typingElement = document.getElementById('typing-text');
+  if (typingElement) {
+    const texts = [
+      'Software Engineer',
+      'Full-Stack Developer', 
+      'Problem Solver',
+      'Tech Enthusiast'
+    ];
+    
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+    
+    function typeText() {
+      const currentText = texts[textIndex];
+      
+      if (isDeleting) {
+        typingElement.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+        typingSpeed = 50;
+      } else {
+        typingElement.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
+        typingSpeed = 100;
+      }
+      
+      if (!isDeleting && charIndex === currentText.length) {
+        setTimeout(() => { isDeleting = true; }, 2000);
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        textIndex = (textIndex + 1) % texts.length;
+      }
+      
+      setTimeout(typeText, typingSpeed);
+    }
+    
+    typeText();
+  }
+  
+  // Counter animation
+  const counters = document.querySelectorAll('.stat-number[data-count]');
+  if (counters.length > 0) {
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    counters.forEach(counter => observer.observe(counter));
+  }
+  
+  function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-count'));
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let current = 0;
+    
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        element.textContent = target + (target > 10 ? '+' : '');
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(current);
+      }
+    }, 16);
+  }
+}
