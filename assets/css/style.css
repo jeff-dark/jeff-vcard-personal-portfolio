@@ -1462,6 +1462,26 @@ main {
   transform: translateY(-2px);
 }
 
+.mini-submit-btn.success {
+  background: #27ca3f !important;
+  color: white !important;
+}
+
+.mini-submit-btn.error {
+  background: #e74c3c !important;
+  color: white !important;
+}
+
+.form-btn.success {
+  background: #27ca3f !important;
+  color: white !important;
+}
+
+.form-btn.error {
+  background: #e74c3c !important;
+  color: white !important;
+}
+
 .newsletter-form {
   margin-bottom: 25px;
 }

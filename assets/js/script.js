@@ -745,7 +745,13 @@ function initContactForms() {
   // Mini contact form
   const miniForm = document.getElementById('mini-contact-form');
   if (miniForm) {
-    miniForm.addEventListener('submit', handleMiniContactSubmit);
+    miniForm.addEventListener('submit', handleFormSubmit);
+  }
+  
+  // Main contact form
+  const mainForm = document.getElementById('main-contact-form');
+  if (mainForm) {
+    mainForm.addEventListener('submit', handleFormSubmit);
   }
   
   // Newsletter form
@@ -761,38 +767,70 @@ function initContactForms() {
   }
 }
 
-function handleMiniContactSubmit(e) {
-  // Let the form submit normally to Formspree
-  // Just provide visual feedback on button click
+async function handleFormSubmit(e) {
+  e.preventDefault();
+  
   const form = e.target;
-  const submitBtn = form.querySelector('.mini-submit-btn');
+  const formData = new FormData(form);
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const isMainForm = form.id === 'main-contact-form';
+  
+  // Store original button content
+  const originalContent = submitBtn.innerHTML;
   
   // Disable button and show loading
   submitBtn.disabled = true;
   submitBtn.innerHTML = `
-    <div class="activity-spinner" style="width: 16px; height: 16px;"></div>
+    <div class="activity-spinner" style="width: 16px; height: 16px; border: 2px solid ${isMainForm ? 'var(--smoky-black)' : 'white'}; border-top: 2px solid ${isMainForm ? 'var(--orange-yellow-crayola)' : 'var(--orange-yellow-crayola)'}; border-radius: 50%; animation: spin 1s linear infinite;"></div>
     <span>Sending...</span>
   `;
   
-  // The form will submit to Formspree naturally
-  // Reset button after a short delay to show feedback
-  setTimeout(() => {
-    submitBtn.innerHTML = `
-      <ion-icon name="checkmark-outline"></ion-icon>
-      <span>Message Sent!</span>
-    `;
-    submitBtn.style.background = '#27ca3f';
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
     
-    // Reset button after 3 seconds
+    if (response.ok) {
+      // Success state
+      submitBtn.className = submitBtn.className.replace(/\b(success|error)\b/g, '') + ' success';
+      submitBtn.innerHTML = `
+        <ion-icon name="checkmark-outline"></ion-icon>
+        <span>Message Sent!</span>
+      `;
+      
+      // Reset form
+      form.reset();
+      
+      // Reset button after 4 seconds
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.className = submitBtn.className.replace(/\b(success|error)\b/g, '');
+        submitBtn.innerHTML = originalContent;
+      }, 4000);
+      
+    } else {
+      throw new Error('Form submission failed');
+    }
+    
+  } catch (error) {
+    // Error state
+    submitBtn.className = submitBtn.className.replace(/\b(success|error)\b/g, '') + ' error';
+    submitBtn.innerHTML = `
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <span>An Error Occurred</span>
+    `;
+    
+    // Reset button after 4 seconds
     setTimeout(() => {
       submitBtn.disabled = false;
-      submitBtn.style.background = '';
-      submitBtn.innerHTML = `
-        <ion-icon name="send-outline"></ion-icon>
-        <span>Send Message</span>
-      `;
-    }, 3000);
-  }, 1000);
+      submitBtn.className = submitBtn.className.replace(/\b(success|error)\b/g, '');
+      submitBtn.innerHTML = originalContent;
+    }, 4000);
+  }
 }
 
 function handleNewsletterSubmit(e) {
