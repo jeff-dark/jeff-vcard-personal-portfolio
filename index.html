@@ -182,7 +182,7 @@
           </li>
 
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Portfolio</button>
+            <button class="navbar-link" data-nav-link>Projects</button>
           </li>
 
           <li class="navbar-item">
@@ -221,7 +221,7 @@
           </p>
 
           <div>
-            <button class="form-btn" data-page-target="portfolio" title="View My Work" style="margin-bottom:10px;">
+            <button class="form-btn" data-page-target="projects" title="View My Work" style="margin-bottom:10px;">
               <ion-icon name="briefcase-outline"></ion-icon>
               <span>View My Work</span>
             </button>
@@ -717,237 +717,108 @@
 
 
       <!--
-        - #PORTFOLIO
+        - #PROJECTS
       -->
 
-      <article class="portfolio" data-page="portfolio">
+      <article class="projects" data-page="projects">
 
         <header>
-          <h2 class="h2 article-title">Portfolio</h2>
+          <h2 class="h2 article-title">My Projects</h2>
+          <p class="projects-intro">
+            Explore a collection of projects I've built, contributed to, or experimented with — ranging from full-stack web applications to automation tools and open-source contributions.
+          </p>
         </header>
 
-        <section class="projects">
+        <!-- Loading indicator -->
+        <div class="loading-indicator" id="loading-indicator">
+          <div class="spinner"></div>
+          <p>Loading repositories...</p>
+        </div>
 
-          <ul class="filter-list">
+        <!-- Featured Projects Section -->
+        <section class="featured-projects" id="featured-projects" style="display: none;">
+          <h3 class="h3 section-title">Featured Projects</h3>
+          <div class="featured-grid" id="featured-grid">
+            <!-- Featured projects will be populated here -->
+          </div>
+        </section>
 
-            <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
-            </li>
+        <!-- All Projects Section -->
+        <section class="all-projects">
+          <div class="projects-header">
+            <h3 class="h3 section-title">All Projects</h3>
+            
+            <!-- Filter buttons -->
+            <div class="filter-container">
+              <ul class="filter-list">
+                <li class="filter-item">
+                  <button class="filter-btn active" data-filter="all">All</button>
+                </li>
+                <li class="filter-item">
+                  <button class="filter-btn" data-filter="web">Web Development</button>
+                </li>
+                <li class="filter-item">
+                  <button class="filter-btn" data-filter="api">API Integration</button>
+                </li>
+                <li class="filter-item">
+                  <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+                </li>
+                <li class="filter-item">
+                  <button class="filter-btn" data-filter="tools">Tools & Automation</button>
+                </li>
+              </ul>
 
-            <li class="filter-item">
-              <button data-filter-btn>Web design</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Applications</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Web development</button>
-            </li>
-
-          </ul>
-
-          <div class="filter-select-box">
-
-            <button class="filter-select" data-select>
-
-              <div class="select-value" data-selecct-value>Select category</div>
-
-              <div class="select-icon">
-                <ion-icon name="chevron-down"></ion-icon>
+              <!-- Mobile filter dropdown -->
+              <div class="filter-select-box">
+                <button class="filter-select" data-select>
+                  <div class="select-value" data-select-value>All Projects</div>
+                  <div class="select-icon">
+                    <ion-icon name="chevron-down"></ion-icon>
+                  </div>
+                </button>
+                <ul class="select-list">
+                  <li class="select-item">
+                    <button data-select-item data-filter="all">All</button>
+                  </li>
+                  <li class="select-item">
+                    <button data-select-item data-filter="web">Web Development</button>
+                  </li>
+                  <li class="select-item">
+                    <button data-select-item data-filter="api">API Integration</button>
+                  </li>
+                  <li class="select-item">
+                    <button data-select-item data-filter="fullstack">Full-Stack</button>
+                  </li>
+                  <li class="select-item">
+                    <button data-select-item data-filter="tools">Tools & Automation</button>
+                  </li>
+                </ul>
               </div>
-
-            </button>
-
-            <ul class="select-list">
-
-              <li class="select-item">
-                <button data-select-item>All</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Web design</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Applications</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Web development</button>
-              </li>
-
-            </ul>
-
+            </div>
           </div>
 
-          <ul class="project-list">
+          <!-- Projects grid -->
+          <div class="projects-grid" id="projects-grid">
+            <!-- Projects will be populated here -->
+          </div>
+        </section>
 
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-1.jpg" alt="finance" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Finance</h3>
-
-                <p class="project-category">Web development</p>
-
+        <!-- GitHub CTA Section -->
+        <section class="github-cta">
+          <div class="cta-content">
+            <h3 class="h3">💡 Want to explore more?</h3>
+            <p>Visit my GitHub profiles to see all my repositories and contributions:</p>
+            <div class="github-links">
+              <a href="https://github.com/jeff-dark" target="_blank" class="github-link">
+                <ion-icon name="logo-github"></ion-icon>
+                <span>github.com/jeff-dark</span>
               </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-2.png" alt="orizon" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Orizon</h3>
-
-                <p class="project-category">Web development</p>
-
+              <a href="https://github.com/JEFFHONTEZ" target="_blank" class="github-link">
+                <ion-icon name="logo-github"></ion-icon>
+                <span>github.com/JEFFHONTEZ</span>
               </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-3.jpg" alt="fundo" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Fundo</h3>
-
-                <p class="project-category">Web design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-4.png" alt="brawlhalla" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Brawlhalla</h3>
-
-                <p class="project-category">Applications</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-5.png" alt="dsm." loading="lazy">
-                </figure>
-
-                <h3 class="project-title">DSM.</h3>
-
-                <p class="project-category">Web design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-6.png" alt="metaspark" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">MetaSpark</h3>
-
-                <p class="project-category">Web design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-7.png" alt="summary" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Summary</h3>
-
-                <p class="project-category">Web development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-8.jpg" alt="task manager" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Task Manager</h3>
-
-                <p class="project-category">Applications</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-9.png" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Arrival</h3>
-
-                <p class="project-category">Web development</p>
-
-              </a>
-            </li>
-
-          </ul>
-
+            </div>
+          </div>
         </section>
 
       </article>
